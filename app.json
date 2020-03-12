@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "pages/launch/launch",
+    "pages/home/home"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0112FE"
+  },
+  "sitemapLocation": "sitemap.json"
+}

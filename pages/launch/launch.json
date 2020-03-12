@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "loading": "../../weui/loading/loading"
+  }
+}

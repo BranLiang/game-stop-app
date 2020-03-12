@@ -1,0 +1,3 @@
+<view class="launch-wrapper">
+  <loading type="dot-white"></loading>
+</view>

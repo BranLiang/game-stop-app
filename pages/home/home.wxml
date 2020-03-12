@@ -1,0 +1,82 @@
+<view class="page">
+  <!-- 搜索框 -->
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="输入游戏名称" value="{{inputVal}}" bindinput="inputTyping" bindconfirm="search" />
+        <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+          <icon type="clear" size="14"></icon>
+        </view>
+      </view>
+    </view>
+    <view class="weui-search-bar__cancel-btn" bindtap="search">
+      <text wx:if="{{!isSearching}}">搜索</text>
+      <view class="weui-loading" wx:if="{{isSearching}}"></view>
+    </view>
+  </view>
+
+  <!-- 条件筛选 -->
+  <view class="weui-media-box weui-media-box_small-appmsg">
+    <view class="weui-cells weui-cells_in-small-appmsg">
+      <view bindtap="showFilter" class="weui-cell weui-cell_example weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <image wx:if="{{selectedFilterIndex == 0 || selectedFilterIndex == 3}}" src="../../assets/flags/hk.png" style="width: 26px;height: 20px;margin-right: 16px;vertical-align:middle;" />
+          <image wx:if="{{selectedFilterIndex == 0 || selectedFilterIndex == 2}}" src="../../assets/flags/us.png" style="width: 26px;height: 20px;margin-right: 16px;vertical-align:middle;" />
+          <image wx:if="{{selectedFilterIndex == 0 || selectedFilterIndex == 1}}" src="../../assets/flags/de.png" style="width: 26px;height: 20px;margin-right: 16px;vertical-align:middle;" />
+        </view>
+        <view class="weui-cell__bd weui-cell_primary">
+          <view>{{filters[selectedFilterIndex].text}}</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 游戏列表 -->
+  <view wx:for="{{games}}" wx:key="id">
+    <view class="weui-panel__bd">
+      <view hover-class="simple-hover" bindtap="selectGame" data-game-index="{{index}}" class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="{{item.cover}}" alt></image>
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">
+            <view>
+              <image wx:if="{{(selectedFilterIndex == 0 || selectedFilterIndex == 4) && item.zone == 'en-hk'}}" src="../../assets/flags/hk.png" class="inline-flag" />
+              <image wx:if="{{(selectedFilterIndex == 0 || selectedFilterIndex == 4) && item.zone == 'en-us'}}" src="../../assets/flags/us.png" class="inline-flag" />
+              <image wx:if="{{(selectedFilterIndex == 0 || selectedFilterIndex == 4) && item.zone == 'de-de'}}" src="../../assets/flags/de.png" class="inline-flag" />
+            </view>
+            <view class="badge-subscribed badge-new-game" wx:if="{{item.refresh}}">新品</view>
+            <view class="badge-subscribed" wx:if="{{item.subscribed}}">已订阅</view>
+            <view class="long-text">{{item.title}}</view>
+          </view>
+          <view class="weui-media-box__desc">
+            <view class="game-release-date">{{item.release_date}}</view>
+            <view>{{item.currency}} {{item.latest_price}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="weui-loadmore" wx:if="{{isLoading}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+  <view class="weui-loadmore weui-loadmore_line" wx:elif="{{hasNextPage}}">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">加载更多</view>
+  </view>
+  <view class="weui-loadmore weui-loadmore_line" wx:else>
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">已经到底了</view>
+  </view>
+
+</view>
+
+<!-- 订阅/取消订阅弹出框 -->
+<mp-halfScreenDialog webUrl="{{games[selectedGameIndex].link}}" bindbuttontap="subscribe" show="{{showDialog}}" maskClosable="{{true}}" title="降价了告诉我!" desc="游戏「 {{games[selectedGameIndex].title}} 」" buttons="{{[subscribeButton]}}" tips="价格更新日期: {{games[selectedGameIndex].latest_price_check_date || '暂未更新'}}"></mp-halfScreenDialog>
+
+<!-- 筛选弹出框 -->
+<mp-actionSheet bindactiontap="filterGames" show="{{showFilterDialog}}" actions="{{filters}}">
+</mp-actionSheet>

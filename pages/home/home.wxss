@@ -1,0 +1,107 @@
+/* pages/home/index.wxss */
+.weui-media-box__desc {
+  color: #b21f66;
+  font-size: 32rpx;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+}
+
+.weui-media-box__title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+.long-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.weui-media-box__thumb {
+  border-radius: 8rpx;
+}
+
+.subscription-button {
+  background-color: #0112FE;
+  color: #fff;
+}
+
+.subscribed-button {
+  background-color: #d63447;
+  color: #fff;
+}
+
+.subscribed-button-hover {
+  background-color: #a12533;
+}
+
+.subscription-button-hover {
+  background-color: #00008b;
+}
+
+.simple-hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0.7;
+}
+
+.weui-icon-btn_more {
+  display: none;
+}
+
+.weui-demo-dialog {
+  visibility:hidden;
+  opacity:0;
+  transition:all .3s;
+}
+.weui-demo-dialog_show {
+  visibility:visible;
+  opacity:1;
+}
+
+.badge-subscribed {
+  background-color: #0112FE;
+  color: white;
+  font-size: 16rpx;
+  font-weight: bold;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8rpx;
+  margin-top: 4rpx;
+  margin-bottom: 4rpx;
+  padding-left: 8rpx;
+  padding-right: 8rpx;
+}
+
+.badge-new-game {
+  background-color: #a12533;
+}
+
+.game-release-date {
+  background-color: #1eb2a6;
+  color: #fff;
+  font-size: 18rpx;
+  font-weight: bold;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8rpx;
+  margin-top: 8rpx;
+  margin-bottom: 8rpx;
+  padding-left: 8rpx;
+  padding-right: 8rpx;
+}
+
+.inline-flag {
+  width: 32rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+}
+
+.weui-search-bar__cancel-btn {
+  width: 70rpx;
+}
