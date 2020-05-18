@@ -31,6 +31,10 @@ Page({
         value: "zone:en-hk"
       },
       {
+        text: "热门推荐",
+        value: "featured"
+      },
+      {
         text: "我的关注",
         value: "relation:subscription"
       }
@@ -41,10 +45,17 @@ Page({
     lastSearchedAt: 0
   },
   onLoad: function({
-    gameName
+    gameName,
+    featured
   }) {
+    if (getApp().globalData.openid == '') {
+      wx.redirectTo({
+        url: '../launch/launch'
+      })
+    }
     this.setData({
-      inputVal: gameName ? gameName.replace(/\+/g, " ") : ''
+      inputVal: gameName ? gameName.replace(/\+/g, " ") : '',
+      selectedFilterIndex: featured ? 4 : 0
     }, () => this.fetchDate(this))
   },
   fetchDate: function(homePage) {

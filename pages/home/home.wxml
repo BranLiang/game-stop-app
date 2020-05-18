@@ -52,7 +52,8 @@
             <view class="long-text">{{item.title}}</view>
           </view>
           <view class="weui-media-box__desc">
-            <view class="game-release-date">{{item.release_date}}</view>
+            <view class="game-release-date" wx:if="{{item.featured}}">{{item.provider}}</view>
+            <view class="game-release-date" wx:else>{{item.release_date}}</view>
             <view>{{item.currency}} {{item.latest_price}}</view>
           </view>
         </view>
